@@ -1,0 +1,83 @@
+/* HTML Slides Editor - 编辑样式 */
+
+/* 选中的元素样式 */
+.selected-element {
+  outline: 2px solid #EF4444 !important;
+  outline-offset: 2px !important;
+}
+
+/* 可编辑元素悬停效果 */
+[contenteditable="true"]:hover {
+  outline: 2px solid #4F46E5 !important;
+  outline-offset: 2px !important;
+}
+
+/* 可编辑元素焦点效果 */
+[contenteditable="true"]:focus {
+  outline: 2px solid #EF4444 !important;
+  outline-offset: 2px !important;
+  background: rgba(79, 70, 229, 0.05);
+}
+
+/* 图片悬停效果 */
+img:hover {
+  outline: 2px dashed #10B981 !important;
+  outline-offset: 2px !important;
+  cursor: pointer !important;
+}
+
+/* 工具栏样式优化 */
+#html-editor-toolbar button:hover {
+  background: #F9FAFB !important;
+}
+
+#html-editor-toolbar select:hover {
+  border-color: #4F46E5 !important;
+}
+
+/* 侧边栏样式优化 */
+#html-editor-sidebar div:hover {
+  background: #E5E7EB !important;
+}
+
+/* 通知动画 */
+@keyframes slideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  #html-editor-toolbar {
+    top: 10px !important;
+    right: 10px !important;
+    left: 10px !important;
+    flex-wrap: wrap !important;
+  }
+  
+  #html-editor-sidebar {
+    left: 10px !important;
+    top: auto !important;
+    bottom: 10px !important;
+    width: auto !important;
+    right: 10px !important;
+    max-height: 200px !important;
+  }
+}

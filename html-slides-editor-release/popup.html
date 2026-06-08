@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 320px;
+      min-height: 400px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .header p {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    
+    .main-button {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      color: #667eea;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin-bottom: 16px;
+    }
+    
+    .main-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+    
+    .main-button:active {
+      transform: translateY(0);
+    }
+    
+    .main-button.editing {
+      background: #EF4444;
+      color: white;
+    }
+    
+    .status-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .status-label {
+      font-size: 11px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    
+    .status-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .feature-list {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-list h3 {
+      font-size: 13px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    
+    .feature-item::before {
+      content: "✓";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .stat-card {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+    
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>⚡ HTML Slides Editor</h2>
+    <p>AI演示文稿快速编辑器</p>
+  </div>
+  
+  <button id="toggleEdit" class="main-button">
+    启动编辑模式
+  </button>
+  
+  <div class="status-card">
+    <div class="status-label">当前状态</div>
+    <div class="status-value" id="status">就绪</div>
+  </div>
+  
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number" id="slideCount">0</div>
+      <div class="stat-label">幻灯片</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" id="editCount">0</div>
+      <div class="stat-label">编辑次数</div>
+    </div>
+  </div>
+  
+  <div class="feature-list">
+    <h3>核心功能</h3>
+    <div class="feature-item">可视化文本编辑</div>
+    <div class="feature-item">样式快速调整</div>
+    <div class="feature-item">幻灯片导航</div>
+    <div class="feature-item">一键导出HTML</div>
+  </div>
+  
+  <div class="footer">
+    v1.0.0 • 快速原型版本
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

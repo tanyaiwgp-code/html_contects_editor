@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI生成的演示文稿示例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 40px;
+      scroll-snap-align: start;
+    }
+    
+    h1 {
+      font-size: 64px;
+      margin-bottom: 24px;
+      color: #1F2937;
+    }
+    
+    h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #374151;
+    }
+    
+    p {
+      font-size: 24px;
+      line-height: 1.6;
+      color: #4B5563;
+      max-width: 800px;
+      text-align: center;
+    }
+    
+    ul {
+      list-style: none;
+      margin-top: 40px;
+    }
+    
+    li {
+      font-size: 28px;
+      padding: 16px 0;
+      color: #6B7280;
+    }
+    
+    li::before {
+      content: "✓ ";
+      color: #10B981;
+      font-weight: bold;
+      font-size: 32px;
+    }
+    
+    .accent {
+      color: #4F46E5;
+    }
+    
+    .bg-gradient {
+      background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      color: white;
+    }
+    
+    .bg-gradient h1,
+    .bg-gradient h2,
+    .bg-gradient p {
+      color: white;
+    }
+    
+    .bg-light {
+      background: #F9FAFB;
+    }
+    
+    .bg-dark {
+      background: #1F2937;
+      color: white;
+    }
+    
+    .bg-dark h1,
+    .bg-dark h2,
+    .bg-dark p {
+      color: white;
+    }
+    
+    img {
+      max-width: 600px;
+      height: auto;
+      margin: 40px 0;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stats {
+      display: flex;
+      gap: 60px;
+      margin-top: 60px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 72px;
+      font-weight: bold;
+      color: #4F46E5;
+    }
+    
+    .stat-label {
+      font-size: 20px;
+      color: #6B7280;
+      margin-top: 8px;
+    }
+    
+    button {
+      padding: 16px 48px;
+      font-size: 20px;
+      background: #4F46E5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 40px;
+    }
+    
+    button:hover {
+      background: #4338CA;
+    }
+  </style>
+</head>
+<body>
+  <!-- 第1页：封面 -->
+  <section class="bg-gradient">
+    <h1>🚀 快速原型开发</h1>
+    <p style="font-size: 32px; margin-top: 24px;">将想法在3天内变成可验证的产品</p>
+    <div style="margin-top: 60px; font-size: 20px; opacity: 0.9;">
+      Rapid Prototyping Engineer ⚡
+    </div>
+  </section>
+
+  <!-- 第2页：问题 -->
+  <section class="bg-light">
+    <h2>我们面临的挑战</h2>
+    <p>传统开发周期太长，等产品上线时，市场已经变了</p>
+    <ul style="margin-top: 60px;">
+      <li>开发周期：3-6个月</li>
+      <li>用户反馈：上线后才能获得</li>
+      <li>修改成本：代码写完很难改</li>
+      <li>市场验证：太慢了</li>
+    </ul>
+  </section>
+
+  <!-- 第3页：解决方案 -->
+  <section>
+    <h2>快速原型方法论</h2>
+    <p>用<span class="accent">最快的速度</span>构建<span class="accent">最小可用产品</span></p>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">3天</div>
+        <div class="stat-label">完成MVP</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1周</div>
+        <div class="stat-label">收集反馈</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">80%</div>
+        <div class="stat-label">验证核心假设</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第4页：核心原则 -->
+  <section class="bg-light">
+    <h2>核心原则</h2>
+    <ul>
+      <li>速度优先于完美</li>
+      <li>验证优于假设</li>
+      <li>迭代快于规划</li>
+      <li>用户反馈驱动决策</li>
+    </ul>
+  </section>
+
+  <!-- 第5页：技术栈 -->
+  <section>
+    <h2>推荐技术栈</h2>
+    <p>选择能让开发速度最大化的工具</p>
+    <ul style="columns: 2; margin-top: 40px;">
+      <li>Next.js 14</li>
+      <li>Supabase</li>
+      <li>Prisma ORM</li>
+      <li>Clerk Auth</li>
+      <li>Vercel部署</li>
+      <li>shadcn/ui</li>
+    </ul>
+  </section>
+
+  <!-- 第6页：案例展示 -->
+  <section class="bg-dark">
+    <h2>成功案例</h2>
+    <p>某SaaS产品在3天内完成原型，1周内获得50个付费用户</p>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">50</div>
+        <div class="stat-label">付费用户</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$2,500</div>
+        <div class="stat-label">早期收入</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0</div>
+        <div class="stat-label">广告投入</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第7页：图片示例 -->
+  <section class="bg-light">
+    <h2>可视化数据</h2>
+    <p>原型开发流程对比图</p>
+    <img src="https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=Traditional+vs+Rapid+Prototyping" alt="传统开发 vs 快速原型">
+    <p style="font-size: 18px; margin-top: 20px; color: #9CA3AF;">快速原型方法可以将开发周期缩短90%</p>
+  </section>
+
+  <!-- 第8页：行动号召 -->
+  <section class="bg-gradient">
+    <h2>开始你的快速原型之旅</h2>
+    <p style="font-size: 28px; margin: 40px 0;">不要等完美，先验证想法</p>
+    <button onclick="alert('开始构建你的MVP！')">立即开始 →</button>
+    <p style="font-size: 16px; margin-top: 40px; opacity: 0.8;">
+      联系我们：rapid@example.com
+    </p>
+  </section>
+</body>
+</html>
