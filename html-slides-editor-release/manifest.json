@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HTML Slides Editor",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "快速编辑AI生成的HTML演示文稿",
   "permissions": ["activeTab", "storage", "downloads"],
   "host_permissions": ["<all_urls>"],

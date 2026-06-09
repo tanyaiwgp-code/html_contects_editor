@@ -9,7 +9,7 @@ let redoStack = [];
 const MAX_HISTORY = 50;
 
 // ==================== 初始化 ====================
-console.log('[HTML Slides Editor] Content script loaded v2.4 (stable)');
+console.log('[HTML Slides Editor] Content script loaded v2.5');
 
 // 挂载到 window 供调试
 window.undo = undo;
@@ -612,12 +612,72 @@ function createSidebar(slides) {
 
   sidebar.querySelectorAll('.slide-nav-item').forEach(item => {
     item.addEventListener('click', () => {
-      const el = document.querySelector(`[data-slide-index="${item.getAttribute('data-index')}"]`);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      const idx = parseInt(item.getAttribute('data-index'));
+      navigateToSlide(idx, slides.length);
     });
     item.addEventListener('mouseenter', function () { this.style.background = '#EEF2FF'; this.style.borderColor = '#4F46E5'; this.style.color = '#312E81'; });
     item.addEventListener('mouseleave', function () { this.style.background = '#F9FAFB'; this.style.borderColor = 'transparent'; this.style.color = '#4B5563'; });
   });
+}
+
+// ==================== 智能幻灯片导航 ====================
+// 支持垂直滚动、横向 scroll-snap、以及 CSS transform 三种翻页模式
+function navigateToSlide(slideIndex, totalSlides) {
+  const el = document.querySelector(`[data-slide-index="${slideIndex}"]`);
+  if (!el) return;
+
+  // 策略1：scrollIntoView（适用垂直滚动和横向 scroll-snap 型演示文稿）
+  // block:'start' 处理垂直滚动，inline:'start' 处理横向滚动
+  el.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+
+  // 策略2：400ms 后检测是否可见，不可见则尝试页面自己的导航机制
+  setTimeout(() => {
+    const rect = el.getBoundingClientRect();
+    const visible = rect.left > -50 && rect.right < window.innerWidth + 50 &&
+                    rect.top > -50 && rect.bottom < window.innerHeight + 50;
+
+    if (visible) return; // scrollIntoView 成功了
+
+    // 策略2a：尝试全局函数（部分框架会把导航暴露在 window 上）
+    if (typeof window.goToSlide === 'function') { window.goToSlide(slideIndex); return; }
+    if (typeof window.slideTo === 'function') { window.slideTo(slideIndex); return; }
+
+    // 策略2b：查找页面自身的导航控件（点状/条状指示器）
+    const navPatterns = [
+      '[class*="dot"]', '[class*="bullet"]', '[class*="indicator"]',
+      '[class*="pagination"] > *', '[class*="nav-dot"]',
+      '[role="tab"]', 'nav [class*="item"]'
+    ];
+    for (const sel of navPatterns) {
+      const items = document.querySelectorAll(sel);
+      if (items.length === totalSlides && items[slideIndex]) {
+        items[slideIndex].click();
+        return;
+      }
+    }
+
+    // 策略2c：最后手段 — 逐页跳转（通过方向键模拟）
+    // 找到当前可见的 slide，计算需要前进/后退几步
+    let currentIdx = -1;
+    for (let i = 0; i < totalSlides; i++) {
+      const s = document.querySelector(`[data-slide-index="${i}"]`);
+      if (s) {
+        const r = s.getBoundingClientRect();
+        if (r.left > -50 && r.right < window.innerWidth + 50 &&
+            r.top > -50 && r.bottom < window.innerHeight + 50) {
+          currentIdx = i; break;
+        }
+      }
+    }
+    if (currentIdx >= 0 && currentIdx !== slideIndex) {
+      const key = slideIndex > currentIdx ? 'ArrowRight' : 'ArrowLeft';
+      const steps = Math.abs(slideIndex - currentIdx);
+      for (let s = 0; s < steps; s++) {
+        document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+      }
+      showNotification(`📑 跳转到第 ${slideIndex + 1} 页`);
+    }
+  }, 400);
 }
 
 // ==================== 图片替换 ====================
