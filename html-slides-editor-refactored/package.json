@@ -1,0 +1,13 @@
+{
+  "name": "html-slides-editor-refactored",
+  "version": "1.0.0",
+  "description": "> Chrome 浏览器扩展，可视化编辑 AI 生成的 HTML 演示文稿",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
